@@ -1,8 +1,17 @@
 import express from 'express'
+import mongoose from 'mongoose';
+import config from './config'
 
-const app = express()
+const app = express();
+const { MONGO_URI } = config;
+ 
+mongoose.connect(MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+})
+.then(()=> console.log("MongoDB connecting Success"))
+.catch((e) => console.log(e));
 
-app.get('/')
-// / 으로 접속하는 걸 모두 다 받아들이기
+app.get("/")
 
 export default app;
