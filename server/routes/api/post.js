@@ -1,19 +1,31 @@
 import express from 'express'
 
-// 글을 작성하기 위해 mongoDB 모델을 불러와야 한다.
+// Model
 import Post from '../../models/post'
 
 const router = express.Router()
 
-// 모든 post 를 검색하는 라우터
+// api/post 
 router.get('/', async(req, res)=> {
     const postFindResult = await Post.find()
-    console.log(postFindResult, "전체 게시글을 조회했습니다.")
+    console.log(postFindResult, "All Post Get")
     res.json(postFindResult)
 })
 
 
-// 게시글 작성 라우터
+// post routes
 router.post('/', async(req, res) => {
-    
-})
+    try{
+        console.log(req, "----- req -----");
+        const { title, contents, fileUrl, creator } = req.body;
+        const newPost = await Post.create({
+            title, contents, fileUrl, creator
+        });
+        res.json(newPost)
+    } catch(e) {
+        console.log(e);
+    }
+}) 
+
+// 모듈화하여 내보내기
+export default router;

@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 import config from './config'
 import helmet from 'helmet';
 
+// Routes
+
+
 const app = express();
 const { MONGO_URI } = config;
 
@@ -22,7 +25,7 @@ mongoose.connect(MONGO_URI, {
 .then(()=> console.log("MongoDB connecting Success"))
 .catch((e) => console.log(e));
 
-// 라우터 사용
+// use routes
 app.get("/")
 
 export default app;  
