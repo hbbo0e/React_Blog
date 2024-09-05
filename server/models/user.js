@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ["system", "manager", "customer"],
+        enum: ['system', 'manager', 'customer', 'User'],
         default: "User"
     },
     register_date: {
